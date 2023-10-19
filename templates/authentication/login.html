@@ -1,0 +1,36 @@
+{% extends "base_auth.html" %}
+{% load static %}
+{% block content %}
+
+<div class="row mt-4">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Login</h4>
+                <form action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    {% include "partials/_messages.html" %}
+                    <div class="form-group mb-3">
+                        <label for="usernameField">Username</label>
+                        <input type="text" name="username" id="usernameField" class="form-control form-control-lg" placeholder="Enter your username" autocomplete="off" value="{{fieldValues.username}}">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="passwordField">Password</label>
+                        <input type="password" name="password" id="passwordField" class="form-control form-control-lg" placeholder="Enter your password" autocomplete="off">
+                    </div>
+                    <button type="submit" class="btn btn-block btn-primary submit-btn">Login</button>
+                </form>
+                <div class="container mt-2">
+                    <span class="text-lead lead">Don't have an account?</span> <a href="{% url 'register' %}">Register</a>
+                    <br>
+                    <span class="text-lead lead">Forgot password?</span> <a href= "{% url 'request-password' %}">Reset-Password</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+
+
+{% endblock content %}

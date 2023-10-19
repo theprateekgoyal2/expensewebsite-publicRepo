@@ -1,0 +1,44 @@
+{% extends "admin/base.html" %}
+{% block extrahead %}
+  <style type="text/css">
+    /* Apply your inline CSS here */
+    #header {
+      background-color: #253C78;
+      color: #FFEECF;
+    }
+
+    #branding h1 {
+        color: #652C4F;
+        font-weight: 500;
+    }
+
+    div.breadcrumbs {
+        background: #2B59C3;
+        padding: 10px 40px;
+        border: none;
+        color: var(--breadcrumbs-fg);
+        text-align: left;
+    }
+
+    .module h2, .module caption, .inline-group h2 {
+        background-color: #253C78;
+    }
+
+    #nav-sidebar .current-model {
+        background: #407ec0;
+    }
+    
+  </style>
+{% endblock %}
+{% load static %}
+{% block branding %}
+<h1 id="head">
+    <img src="{% static 'img/budget.png' %}" width="30" height="30" alt="logo not loaded">
+    <strong style="color: antiquewhite;">Eagle-Expenses</strong> 
+</h1>
+{% endblock %}
+
+{% block extrastyles %}
+<!-- <link rel="stylesheet" href="{% static 'css/adminstyle.css' %}"> -->
+
+{% endblock extrastyles %}

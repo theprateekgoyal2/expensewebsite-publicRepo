@@ -1,0 +1,52 @@
+{% extends "base_auth.html" %}
+{% load static %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Register for a Free Account</h4>
+                <form action="{% url 'register' %}" method="post">
+                    {% csrf_token %}
+                    {% include "partials/_messages.html" %}
+                    <div class="form-group mb-3">
+                        <input type="text" name="Firstname" id="nameField" class="form-control form-control-lg" placeholder="Firstname" autocomplete="off" value="{{fieldValues.Firstname}}">
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" name="Lastname" id="nameField" class="form-control form-control-lg" placeholder="Lastname" autocomplete="off" value="{{fieldValues.Lastname}}">
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <input type="text" name="username" id="usernameField" class="form-control form-control-lg" placeholder="Username" autocomplete="off" value="{{fieldValues.username}}">
+                    </div>
+                    <div class="invalid_feedback invalid-feedback" style="display: none;"></div>
+                    <p class="text-sm text-success usernameSuccessOutput"></p>
+                    
+                    <div class="form-group mb-3">
+                        <input type="email" name="email" id="emailField" class="form-control form-control-lg" placeholder="Email" autocomplete="off" value="{{fieldValues.email}}">
+                    </div>
+                    <div class="emailFeedbackArea invalid-feedback" style="display: none;"></div>
+                    <p class="text-sm text-success emailSuccessOutput"></p>
+                    
+                    <div class="form-group mb-3">
+                        <input type="password" name="password" id="passwordField" class="form-control form-control-lg" placeholder="Password" autocomplete="off">
+                        <small class="input-group-text py-3 showPasswordToggle">SHOW</small>
+                    </div>
+                      
+                    <button type="submit" class="btn btn-block btn-primary submit-btn">Register</button>
+                </form>
+                <div class="container mt-2">
+                    <span class="text-lead lead">Already have an account? </span><a href="{% url 'login' %}">Login</a></p>
+                    <span class="text-lead lead">Forgot password?</span> <a href= "{% url 'request-password' %}">Reset-Password</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+
+<script src="{% static 'js/register.js' %}"> </script>
+
+{% endblock content %}

@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .rounded-card {
+        background-color: #46A9A6;
+        border-radius: 15px;
+        border-width: 0px;
+    }
+    
+    .green-card {
+        background-color: #46A9A6;
+        border-radius: 15px;
+        border-width: 0px;
+    }
+
+    .red-card {
+        background-color: #C1666B;
+        border-radius: 15px;
+        border-width: 0px;
+    }
+
+    .yellow-card {
+        background-color: #D4B463;
+        border-radius: 15px;
+        border-width: 0px;
+    }
+
+    .chart-card {
+        background-color: #EDF2EF;
+        border-radius: 15px;
+        border-width: 0px;
+    }
+    
+    .chart-heading {
+        font-size: 16px;
+        color: #000;
+    }
+
+    .chart-container {
+        padding: 20px;
+    }
+
+    .chart-canvas {
+        width: 100%;
+    }
+
+    .large-font {
+        font-size: 24px;
+    }
+
+    .cream-card {
+        background-color: #E4DFDA;
+        border-radius: 15px;
+        border-width: 0px;
+    }
+    .recent-card{
+        background-color: #EDF2EF;
+        border-radius: 15px;
+        border-width: 0px;
+    }
+    .expense-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #ccc;
+    }
+    
+    .category {
+        flex: 1;
+        font-weight: bold;
+    }
+    
+    .amount {
+        font-weight: bold;
+        text-align: right;
+    }
+    
+    .expense-details {
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+        align-items: flex-end;
+    }
+    
+</style>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card mb-4 green-card">
+                <div class="card-body">
+                    <h4 class="card-title">Total Expenses</h4>
+                    <B class="large-font"><strong><p class="card-text"> ₹{{ expense_amount }}</p></strong></B>
+                </div>                
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card mb-4 yellow-card">
+                <div class="card-body">
+                    <h4 class="card-title">Total Income</h4>
+                    <B class="large-font"><strong><p class="card-text"> ₹{{ income_amount }}</p></strong></B>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card mb-4 red-card">
+                <div class="card-body">
+                    <h4 class="card-title">Expense rate</h4>
+                    <p class="card-text"><strong><B class="large-font">₹{{ expense_rate }}</B></strong> per day</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card mb-4 cream-card">
+                <div class="card-body">
+                    <h4 class="card-title">Earing Rate</h4>
+                    <p class="card-text"><strong><B class="large-font">₹{{ income_rate }}</B></strong> per day</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card chart-card">
+                <div class="card-body chart-container">
+                    <B class="card-title chart-heading">Expense vs. Income</B>
+                    <canvas id="myBarChart" class="chart-canvas"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4 recent-card">
+                <div class="card-body">
+                    <h4 class="card-title">Recent Expenses</h4>
+                    {% for expense in recent_expenses %}
+                        <div class="expense-item">
+                            <p class="category">{{ expense.category }}</p>
+                            <div class="expense-details">
+                                <p class="amount">{{ expense.amount }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <a href="{% url 'expenses' %}" class="btn btn-primary mt-2">View all</a>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>
+
+<script src="{% static 'js/barChartData.js' %}"></script>
+{% endblock %}

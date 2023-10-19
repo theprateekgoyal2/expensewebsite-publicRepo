@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .account-info {
+        background-color: #E4DFDA; /* Cream */
+        border: 1px solid #e0e0e0;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+    }
+
+    .category-list, .source-list {
+        background-color: #E4DFDA; /* Cream */
+        border: 1px solid #e0e0e0;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .add-category, .add-source {
+        margin-top: 10px;
+    }
+
+    .btn-primary {
+        background-color: #4357AD; /* Blue */
+        border-color: #4357AD;
+    }
+
+    .btn-primary:hover {
+        background-color: #003982; /* Darker Blue for Hover */
+        border-color: #003982;
+    }
+
+    .btn-secondary {
+        background-color: #48A9A6; /* Teal */
+        border-color: #48A9A6;
+    }
+
+    .btn-secondary:hover {
+        background-color: #298580; /* Darker Teal for Hover */
+        border-color: #298580;
+    }
+
+    .btn-danger {
+        background-color: #C1666B; /* Red */
+        border-color: #C1666B;
+    }
+
+    .btn-danger:hover {
+        background-color: #A03F45; /* Darker Red for Hover */
+        border-color: #A03F45;
+    }
+
+    .btn-warning {
+        background-color: #D4B483; /* Yellow */
+        border-color: #D4B483;
+    }
+
+    .btn-warning:hover {
+        background-color: #B58E5B; /* Darker Yellow for Hover */
+        border-color: #B58E5B;
+    }
+
+    .btn-cancel {
+        background-color: #D4B483; /* Yellow */
+        border-color: #D4B483;
+    }
+
+    .btn-cancel:hover {
+        background-color: #B58E5B; /* Darker Yellow for Hover */
+        border-color: #B58E5B;
+    }
+</style>
+<div class="container mt-4">
+    <h3 class="text-center mb-4">Account Details</h3>
+    <hr>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h4 class="mb-3">Personal Information</h4>
+            <div class="account-info">
+                <strong>Name:</strong> {{ user.first_name }} {{ user.last_name }}
+                <br>
+                <strong>Email:</strong> {{ user.email }}
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h4 class="mb-3">Your Expense Categories</h4>
+            <div class="category-list">
+                {% for category in categories %}
+                    {{ category.name }}
+                    <br>
+                {% endfor %}
+
+                <div class="add-category">
+                    <button id="add-category-button" class="btn btn-primary">Add Category</button>
+                    <form id="add-category-form" style="display: none;" method="post" action="">
+                        {% csrf_token %}
+                        <input type="text" name="category" placeholder="Add a new category">
+                        <button type="submit">Submit</button>
+                        <button type="button" id="cancel-category">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <h4 class="mb-3">Your Income Sources</h4>
+            <div class="source-list">
+                {% for source in sources %}
+                    {{ source.name }}
+                    <br>
+                {% endfor %}
+
+                <div class="add-source">
+                    <button id="add-source-button" class="btn btn-secondary">Add Source</button>
+                    <form id="add-source-form" style="display: none;" method="post" action="">
+                        {% csrf_token %}
+                        <input type="text" name="source" placeholder="Add a new source">
+                        <button type="submit">Submit</button>
+                        <button type="button" id="cancel-source">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/sourceUpload.js' %}"></script>
+<script src="{% static 'js/categoryUpload.js' %}"></script>
+{% endblock %}
+
+
+
+{% comment %} {% url 'add-category' %} {% endcomment %}

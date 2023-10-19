@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .chart-canvas {
+        max-width: 100%; /* Set the maximum width to the card's width */
+        max-height: 400px; /* Set the maximum height you want */
+        width: 100%; /* Make the canvas responsive */
+        height: auto;
+    }
+
+    .card {
+        background-color: #f0f0f0;
+        max-height: 400px
+        border-radius: 10px;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px
+    }
+
+    .form-select {
+        background-color: #f0f0f0; /* Background color */
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Drop shadow */
+    }
+</style>
+
+
+{% include "partials/_messages.html" %}
+<div class="container mt-4">
+    <div class="row" style="display: flex; align-items: center; padding-left: 12px; padding-right: 12px;">
+        <div class="col-md-8"
+            style="background-color: #CCCCCC; border-radius: 10px; display: flex; align-items: center;">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb text-center" style="margin-top: 5px;margin-bottom: 7px;">
+                    <li class="breadcrumb-item"><a href="">Expense Summary</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Summary</li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="col-md-2 d-flex align-items-center justify-content-center" style="padding-left: 0px;padding-right: 0px;">
+            <a href="{% url 'expenses' %}" class="btn btn-primary">Back</a>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <!-- Add a dropdown select for time intervals -->
+        <div class="col-md-4">
+            <select id="time-interval" class="form-select">
+                <option value="1m">Last 1 month</option>
+                <option value="3m">Last 3 months</option>
+                <option value="6m">Last 6 months</option>
+                <option value="1y">Last 1 year</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
+
+<script src="{% static 'js/stats.js' %}"> </script>
+
+<div class="row justify-content-center mt-3">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <canvas id="myChart" class="chart-canvas"></canvas>
+                <div class="text-center mt-3">
+                    <p>Expenses for - <span id="selected-time-interval">Last 1 month</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  
+{% endblock content %}

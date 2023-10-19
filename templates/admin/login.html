@@ -1,0 +1,36 @@
+{% extends "admin/login.html" %}
+{% block extrahead %}
+  <style type="text/css">
+    /* Apply your inline CSS here */
+    #header {
+      background-color: #253C78;
+      color: #FFEECF;
+    }
+
+    .login .submit-row {
+        padding: 0px !important;
+        margin: 0;
+        text-align: center;
+    }
+
+    .button, input[type=submit], input[type=button], .submit-row input, a.button {
+        background-color: #253C78;
+        width: 100%;
+    }
+
+    .button, input[type=submit], input[type=button], .submit-row input, a.button:hover {
+        background-color: #2B59C3;
+        width: 100%;
+    }
+
+    
+    
+  </style>
+{% endblock %}
+{% load static %}
+{% block branding %}
+<h1 id="head">
+    <img src="{% static 'img/budget.png' %}" width="30" height="30" alt="logo not loaded">
+    <strong style="color: antiquewhite;">Backend Login</strong> 
+</h1>
+{% endblock %}

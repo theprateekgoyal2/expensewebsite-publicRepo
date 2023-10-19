@@ -1,0 +1,80 @@
+{% load static %}
+<html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="sidebar border border-end col-md-3 col-lg-2 p-0" style="background-color: #4357ad; min-height: 100vh;">
+    <div class="offcanvas-md offcanvas-end" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="sidebarMenuLabel" style="color: white;">Dashboard</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
+          aria-label="Close" style="color: white;"></button>
+      </div>
+      <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+        <ul class="nav flex-column mb-auto">
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{% url 'dashboard' %}"
+              style="color: white;">
+              <i class="fas fa-chart-pie"></i>
+              Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="{% url 'expenses' %}" style="color: white;">
+              <i class="fas fa-receipt"></i>
+              Expenses
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="{% url 'income' %}" style="color: white;">
+              <i class="fas fa-money-bill-wave"></i>
+              Income
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="{% url 'stats' %}" style="color: white;">
+              <i class="fas fa-chart-bar"></i>
+              Expenses Summary
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="{% url 'income-stats' %}" style="color: white;">
+              <i class="fas fa-chart-line"></i>
+              Income Summary
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="{% url 'prefernces' %}" style="color: white;">
+              <i class="fas fa-cog"></i>
+              General
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="{% url 'account-details' %}"
+              style="color: white;">
+              <i class="fas fa-user"></i>
+              Account
+            </a>
+          </li>
+          <li class="nav-item bottom-section" style="margin-top: auto;">
+            <form action="{% url 'logout' %}" method="post">
+              {% csrf_token %}
+              <button class="nav-link text-white" type="submit">
+                <i class="fas fa-sign-out-alt"></i> Log out
+            </button>            
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
