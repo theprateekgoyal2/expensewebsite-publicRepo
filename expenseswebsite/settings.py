@@ -80,17 +80,6 @@ WSGI_APPLICATION = 'expenseswebsite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': "railway",
-#         'USER': "postgres",
-#         'PASSWORD': "ymfYWO8Eewm1YglnhR7d",
-#         'HOST': "containers-us-west-116.railway.app",
-#         'PORT': "7621",
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
