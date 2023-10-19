@@ -40,10 +40,14 @@ To set up the project locally, you can use the provided `requirements.txt` file.
   ```
 
 4. Install project dependencies:
-`pip install -r requirements.txt`
+  ```
+  pip install -r requirements.txt
+  ```
 
 5. Apply database migrations:
-`python manage.py migrate`
+  ```
+  python manage.py migrate
+  ```
 
 6. Add SMTP Server Credentials:
 - Open the `settings.py` file in your project.
@@ -51,7 +55,9 @@ To set up the project locally, you can use the provided `requirements.txt` file.
 - Add your SMTP server credentials, including the SMTP server address, port, username, and password.
 
 7. Start the development server:
-`python manage.py runserver`
+  ```
+  python manage.py runserver
+  ```
 
 8. Access the application in your web browser at [http://localhost:8000](http://localhost:8000).
 
